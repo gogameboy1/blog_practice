@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article</title>
+</head>
+<body>
+    <div class="posts">
+        {% for post in posts %}
+        <section class="post">
+            <header class="post-header">
+                <h2 class="post-title">{{ post.title }}</h2>
+
+                <p class="post-meta">
+                    Time: <a class="post-author" href="#">{{ post.date }}</a> Category: <a href="{% url 'showCat' category=post.category %">{{ post.category }}</a>
+                </p>
+            </header>
+
+            <div class="post-description">
+                <p>
+                    {{ post.content }}
+                </p>
+            </div>
+                <a href="{% url 'editArticle' title=post.title %}">
+                    <button>
+                        Edit
+                    </button>
+                </a>
+        </section>
+        {% endfor %}
+    </div>
+    <br/>
+    <div class="back_index">
+        <a href="{% url 'index' %}">
+            <button>
+                Main page
+            </button>
+        </a>
+    </div>
+</body>
+</html>
