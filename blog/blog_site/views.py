@@ -43,4 +43,6 @@ def showCat(request, id):
     posts = Category.objects.get(id=id).article_set.all()
     return render(request, 'showCat.html', {'posts': posts})
 
-
+def shoeTag(request, id):
+    posts = Tag.objects.get(id=id),article_set.all()
+    return render(request, 'showCat.html', {'posts': posts})

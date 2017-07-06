@@ -14,11 +14,10 @@
                     Time: <a href="#">{{ post.date }}</a> Category: <a href="{% url 'showCat' id=post.category.id %}">{{ post.category }}</a>
                 </p>
                 <p>
-                    Tags: <a href="#">
+                    Tags: 
                             {% for tag in post.tags.all %}
-                                {{ tag.name }}
+                                <a href="{% url 'showCat' id=tag.id %}">{{ tag.name }}</a>
                             {% endfor %}
-                          </a>
                 </p>
             </header>
 
