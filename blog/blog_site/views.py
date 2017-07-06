@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http import HttpResponse
-from blog_site.models import Article
+from blog_site.models import Article, Tag, Category
 from django.http import HttpResponseRedirect
 from django import forms
 
@@ -11,7 +11,7 @@ from django import forms
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ['title', 'category', 'content']
+        fields = ['title', 'category', 'tags', 'content']
 
 # Create your views here.
 def index(request):
@@ -39,6 +39,8 @@ def editArticle(request, title):
     mod_article = ArticleForm(instance=query_article)
     return render(request, 'editArticle.html', {'form': mod_article})
 
-def showCat(request, category):
-    posts = Article.objects.filter(category=category)
-    return render(request, 'blog_site/showCat.html', {'posts': posts})
+def showCat(request, id):
+    posts = Category.objects.get(id=id).article_set.all()
+    return render(request, 'showCat.html', {'posts': posts})
+
+
